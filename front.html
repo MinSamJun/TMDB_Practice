@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>영화 모음 사이트</title>
+    <!-- <script>
+        const makeDoc = document.querySelector(src = "./0.js");
+    </script> -->
+</head>
+
+<style>
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .movieData {
+        justify-content: center;
+        display: grid;
+        padding: 10px;
+        grid-template-columns: 550px repeat(2, 550px);
+
+    }
+
+    .card {
+        margin : 10px;
+        display: grid;
+        /* grid-column: 2 / 1; */
+    }
+
+    /* .rate {
+        text-align: justify ;
+    } */
+    .poster {
+        /* display: grid; */
+        margin: auto;
+        /* display: block; */
+    }
+    /* 검색버튼 위치 */
+    .search{ 
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+</style>
+
+<body>
+    <!-- <div><h1>hhhhhhhhhhhhhh</h1><p>pppppppppppppp</p></div> 아쉽게도 h와 p를 한줄에 넣을 수 는 없는 듯하다 -->
+    <form class="search"  onsubmit="handleSearch(event)">
+        <label>영화 검색 : </label>
+        <input type="text" id="search_input" class="search" placeholder="영화 제목을 검색해 보세요">
+        <button type="submit" class="btn1" onclick="this.id='search_btn'">결과 내 검색</button>
+        <button type="submit" class="btn2" id='search_btn'onclick="removeSearch_btnClass('search_btn')">새로 검색</button>
+    </form>
+    <div id="movieData"></div>
+    <script src="./back.js"></script>
+<script>
+    function removeSearch_btnClass(CN){
+        document.querySelector('.btn1').removeAttribute('id');
+    }
+</script>
+</body>
+
+</html>
