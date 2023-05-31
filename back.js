@@ -27,6 +27,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&page=1', options
         // 과제에서 필수조건으로 제시하지 않았더라도, 정보를 가공하는데는 반복 실행이 필요하다.
         //사람이 컴퓨터에게 일을 시키는 이유가 같은걸 반복시키기 위함임을 생각하면 가장 중요한 기능인것 같다.
         movies.forEach(movie => {
+            // 카드 만들기는 별도의 함수로 만들었다.
             const card = makeCards(movie)
             container.appendChild(card);
         });
@@ -90,7 +91,8 @@ function handleSearch(event) {
                 .then(data => {
                     const movies = data.results;
                     const container = document.getElementById('movieData');
-                    container.innerHTML = ''; // 기존 카드 모두 제거
+                    // 기존의 카드가 새로 가져온 카드보다 위에 있기 때문에 기존 카드를 모두 제거하는 기능을 넣는다.
+                    container.innerHTML = '';
 
                     movies.forEach(movie => {
                         const card = makeCards(movie)
@@ -114,7 +116,8 @@ function makeCards(movie) {
     // 영화 제목은 h2 태그를 사용한다. h 태그는 단순히 크고 굵은 것이 아니라 정말로 제목이라는 의미이기 때문에 이것이 검색등에 중요한 역할을 한다.
     const title = document.createElement('h2'); 
     // 영화 제목과 평점이 같은 줄에 있어야 보기 편하기 때문에 평점도 같이 넣는다. 이때 제목과 평점의 구분을 편하게 하기 위해서 공백과 괄호를 넣는다.
-    title.textContent = movie.title + ' (' + movie.vote_average + ')'; 
+    // 또한 api로 검색하면 소숫점 셋 째 자리까지 보여주기 때문에 .toFixed(1)로 소숫점 첫째자리와 가장 비슷한 숫자(str 타입)으로 변환한다.
+    title.textContent = movie.title + ' (' + movie.vote_average.toFixed(1) + ')'; 
     title.classList.add('rate');
   
     // 영화 개요는 단순히 텍스드들이 때문에 p 태그를 사용한다.
