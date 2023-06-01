@@ -90,8 +90,9 @@ function handleSearch(event) {
                 .then(response => response.json())
                 .then(data => {
                     const movies = data.results;
+                    // 만든 카드를 프론트 엔드로 보낼 준비를 한다.
                     const container = document.getElementById('movieData');
-                    // 기존의 카드가 새로 가져온 카드보다 위에 있기 때문에 기존 카드를 모두 제거하는 기능을 넣는다.
+                    // container = id 가 movieData 인 html의 내용물을 바꾸는 기능을 한다.
                     container.innerHTML = '';
 
                     movies.forEach(movie => {
@@ -140,7 +141,7 @@ function makeCards(movie) {
       }
     }
     
-    //상기의 화살표 함수를 이욯아여 포스터 주소를 불러온다.
+    //상기의 화살표 함수를 이용하여 포스터 주소를 불러온다.
     const poster = document.createElement('img');
     poster.src = full(poster_front);
     poster.classList.add('poster');
